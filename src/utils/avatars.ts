@@ -33,7 +33,7 @@ export function getAvatarUrl(email: string, source = defaultSource): string {
   if (cache.has(cacheKey)) { return cache.get(cacheKey) as string; }
 
   const avatarUrl = (sources[source] || sources[defaultSource])(email);
-  
+
   cache.set(cacheKey, avatarUrl);
 
   return avatarUrl;

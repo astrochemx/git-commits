@@ -6,12 +6,12 @@ import { BaseNode } from './base';
 export class RemoteNode extends BaseNode {
 	constructor(public remote: Remote, public manager: GitManager) {
 		super(remote.name);
-		
+
 		this.contextValue = 'remoteNode';
 		this.description = remote.fetchUrl;
 
 		const showPushUrl = remote.pushUrl && remote.pushUrl !== remote.fetchUrl;
-		
+
 		this.tooltip = [
 			`Name: ${remote.name}`,
 			`ReadOnly: ${remote.isReadOnly}`,

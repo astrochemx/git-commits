@@ -250,6 +250,7 @@ export function activate(context: vscode.ExtensionContext) {
         await item.commit.repository.repository.popStash(item.commit.index);
       }
     ),
+
     vscode.commands.registerCommand(
       "gitCommits.stashApply",
       async (item: CommitNode) => {
@@ -264,6 +265,7 @@ export function activate(context: vscode.ExtensionContext) {
         await item.commit.repository.repository.applyStash(item.commit.index);
       }
     ),
+
     vscode.commands.registerCommand(
       "gitCommits.stashDrop",
       async (item: CommitNode) => {
@@ -278,9 +280,11 @@ export function activate(context: vscode.ExtensionContext) {
         await item.commit.repository.repository.dropStash(item.commit.index);
       }
     ),
+
     vscode.commands.registerCommand("gitCommits.addRemote", async () => {
       await vscode.commands.executeCommand("git.addRemote");
     }),
+
     vscode.commands.registerCommand(
       "gitCommits.removeRemote",
       async (item: RemoteNode) => {
@@ -298,6 +302,7 @@ export function activate(context: vscode.ExtensionContext) {
         await item.manager.repository.removeRemote(remoteName);
       }
     ),
+
     vscode.commands.registerCommand(
       "gitCommits.pullFromRemote",
       async (item: RemoteNode) => {
@@ -309,6 +314,7 @@ export function activate(context: vscode.ExtensionContext) {
         );
       }
     ),
+
     vscode.commands.registerCommand(
       "gitCommits.moveWorktree",
       async (item: WorktreeNode) => {
@@ -323,6 +329,7 @@ export function activate(context: vscode.ExtensionContext) {
         gitWorktreesProvider.refresh();
       }
     ),
+
     vscode.commands.registerCommand(
       "gitCommits.lockWorktree",
       async (item: WorktreeNode) => {
@@ -330,6 +337,7 @@ export function activate(context: vscode.ExtensionContext) {
         gitWorktreesProvider.refresh();
       }
     ),
+
     vscode.commands.registerCommand(
       "gitCommits.unlockWorktree",
       async (item: WorktreeNode) => {
@@ -376,6 +384,7 @@ export function activate(context: vscode.ExtensionContext) {
         gitWorktreesProvider.refresh();
       }
     ),
+
     vscode.window.registerFileDecorationProvider(changeDecorator),
     vscode.window.registerFileDecorationProvider(worktreeDecorator)
   );

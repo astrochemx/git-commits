@@ -201,6 +201,10 @@ export function activate(context: vscode.ExtensionContext) {
       await vscode.commands.executeCommand("git.stash");
     }),
 
+    vscode.commands.registerCommand("gitCommits.stashStaged", async () => {
+      await vscode.commands.executeCommand("git.stashStaged");
+    }),
+
     vscode.commands.registerCommand(
       "gitCommits.stashIncludeUntracked",
       async () => {

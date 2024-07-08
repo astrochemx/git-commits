@@ -131,13 +131,19 @@
       },
       {
         "command": "gitCommits.stash",
+        "title": "Stash tracked changes",
+        "icon": "$(root-folder)",
+        "category": "Git Commits"
+      },
+      {
+        "command": "gitCommits.stashStaged",
         "title": "Stash staged changes",
         "icon": "$(archive)",
         "category": "Git Commits"
       },
       {
         "command": "gitCommits.stashIncludeUntracked",
-        "title": "Stash all changes",
+        "title": "Stash changes including untracked",
         "icon": "$(package)",
         "category": "Git Commits"
       },
@@ -271,6 +277,10 @@
           "when": "false"
         },
         {
+          "command": "gitCommits.stashStaged",
+          "when": "false"
+        },
+        {
           "command": "gitCommits.stashIncludeUntracked",
           "when": "false"
         },
@@ -346,12 +356,12 @@
         {
           "command": "gitCommits.stashPopLatest",
           "when": "view == gitCommits.stashes",
-          "group": "navigation@4"
+          "group": "navigation@5"
         },
         {
           "command": "gitCommits.stashApplyLatest",
           "when": "view == gitCommits.stashes",
-          "group": "navigation@3"
+          "group": "navigation@4"
         },
         {
           "command": "gitCommits.stash",
@@ -359,9 +369,14 @@
           "group": "navigation@1"
         },
         {
-          "command": "gitCommits.stashIncludeUntracked",
+          "command": "gitCommits.stashStaged",
           "when": "view == gitCommits.stashes",
           "group": "navigation@2"
+        },
+        {
+          "command": "gitCommits.stashIncludeUntracked",
+          "when": "view == gitCommits.stashes",
+          "group": "navigation@3"
         },
         {
           "command": "gitCommits.addRemote",

@@ -462,12 +462,12 @@
         },
         {
           "command": "gitCommits.removeRemote",
-          "when": "view == gitCommits.remotes",
+          "when": "view == gitCommits.remotes && viewItem == remoteNode",
           "group": "inline@2"
         },
         {
           "command": "gitCommits.pullFromRemote",
-          "when": "view == gitCommits.remotes",
+          "when": "view == gitCommits.remotes && viewItem == remoteNode",
           "group": "inline@1"
         },
         {

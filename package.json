@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/Exelord/git-commits#readme",
   "engines": {
-    "vscode": "^1.70.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
     "Other"
@@ -31,11 +31,7 @@
     "atom",
     "vscode"
   ],
-  "activationEvents": [
-    "onView:gitCommits.commits",
-    "onView:gitCommits.stashes",
-    "onView:gitCommits.remotes"
-  ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "views": {
@@ -497,14 +493,14 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "@types/vscode": "^1.70.0",
+    "@types/vscode": "^1.75.0",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
+    "@vscode/vsce": "^2.29.0",
     "eslint": "^8.38.0",
-    "release-it": "^15.10.1",
+    "release-it": "^17.4.1",
     "typescript": "^5.0.4",
-    "vite": "^4.2.1",
-    "vsce": "^2.15.0"
+    "vite": "^4.2.1"
   },
   "release-it": {
     "git": {

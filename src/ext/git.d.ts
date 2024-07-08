@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Uri, Event, Disposable, ProviderResult, Command } from 'vscode';
+import { Uri, Event, Disposable, ProviderResult, Command, CancellationToken } from 'vscode';
 export { ProviderResult } from 'vscode';
 
 export interface Git {
@@ -156,11 +156,15 @@ export interface FetchOptions {
   depth?: number;
 }
 
-export interface BranchQuery {
-  readonly remote?: boolean;
-  readonly pattern?: string;
-  readonly count?: number;
+export interface RefQuery {
   readonly contains?: string;
+  readonly count?: number;
+  readonly pattern?: string;
+  readonly sort?: 'alphabetically' | 'committerdate';
+}
+
+export interface BranchQuery extends RefQuery {
+  readonly remote?: boolean;
 }
 
 export interface Repository {
@@ -204,8 +208,10 @@ export interface Repository {
   createBranch(name: string, checkout: boolean, ref?: string): Promise<void>;
   deleteBranch(name: string, force?: boolean): Promise<void>;
   getBranch(name: string): Promise<Branch>;
-  getBranches(query: BranchQuery): Promise<Ref[]>;
+  getBranches(query: BranchQuery, cancellationToken?: CancellationToken): Promise<Ref[]>;
   setBranchUpstream(name: string, upstream: string): Promise<void>;
+
+  getRefs(query: RefQuery, cancellationToken?: CancellationToken): Promise<Ref[]>;
 
   getMergeBase(ref1: string, ref2: string): Promise<string>;
 
@@ -228,6 +234,20 @@ export interface Repository {
   log(options?: LogOptions): Promise<Commit[]>;
 
   commit(message: string, opts?: CommitOptions): Promise<void>;
+
+  /**
+   * `repository` property is not specified in the original `git.d.ts` file
+   * from the VSCode 1.75 sources, but was added manually to fix TypeScript
+   * warnings for the `applyStash`, `dropStash`, `popStash`, and `pullFrom`
+   * commands.
+   */
+  repository: {
+    applyStash(index?: number): Promise<void>;
+    dropStash(index?: number): Promise<void>;
+    popStash(index?: number): Promise<void>;
+
+    pullFrom(rebase?: boolean, remote?: string, branch?: string, unshallow?: boolean): Promise<void>;
+  }
 }
 
 export interface RemoteSource {
@@ -352,5 +372,6 @@ export const enum GitErrorCodes {
   UnknownPath = 'UnknownPath',
   EmptyCommitMessage = 'EmptyCommitMessage',
   BranchFastForwardRejected = 'BranchFastForwardRejected',
+  BranchNotYetBorn = 'BranchNotYetBorn',
   TagConflict = 'TagConflict'
 }
